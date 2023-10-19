@@ -17,10 +17,7 @@ Ademas notificará las ofertas diariamente a los suscriptores del servicio.
 Fuentes de datos
   Dataset de gobierno con los precios historicos desde 2007, [Licencia de DAG de Uruguay](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/sites/agencia-gobierno-electronico-sociedad-informacion-conocimiento/files/documentos/publicaciones/licencia_de_datos_abiertos_0.pdf)
   
-  Crawler y Scrapper de las siguientes paginas
-    - 
-    
-  Crawler y Scrapper de las siguientes paginas para obtener la información diaria 
+  Crawler y Scrapper de las cadenas de establecimientos mas importarntes
     - https://www.devoto.com.uy/
     - https://tiendainglesa.com.uy/
     - https://www.tata.com.uy/
