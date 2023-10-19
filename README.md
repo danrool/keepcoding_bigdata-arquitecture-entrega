@@ -7,18 +7,19 @@
 ## Diseño del DAaaS
 
 ### Definicion de la estrategia del DAaaS
-Crear un aplicacion web spa que mejore el acceso de los consumidores a la información, favorecer el funcionamiento de los mercados minoristas, estimulando la competencia y optimizando el proceso de difusión de precios.
-La aplicación permitira buscar y predecir los precios de más de 200 productos en más de 500 establecimientos.
 
-[MIT](https://choosealicense.com/licenses/mit/)
-Los dataset se distribuyen bajo la   [MIT]([https://choosealicense.com/licenses/mit/](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/sites/agencia-gobierno-electronico-sociedad-informacion-conocimiento/files/documentos/publicaciones/licencia_de_datos_abiertos_0.pdf)
+Crear un aplicacion web spa que mejore el acceso de los consumidores a la información, favorecer el funcionamiento de los mercados minoristas, estimulando la competencia y optimizando el proceso de difusión de precios.
+La aplicación permitirá buscar y predecir los precios de más de 200 productos en más de 500 establecimientos. 
+Ademas notificará las ofertas diariamente a los suscriptores del servicio.
+
 ### Arquitectura DAaaS
+
 Fuentes de datos
-  Dataset de gobierno con los precios historicos desde 
+  Dataset de gobierno con los precios historicos desde 2007, [Licencia de DAG de Uruguay](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/sites/agencia-gobierno-electronico-sociedad-informacion-conocimiento/files/documentos/publicaciones/licencia_de_datos_abiertos_0.pdf)
   Dataset
-  Crawler de las siguientes paginas
+  Scrapper de las siguientes paginas
     
-  Crawler de las siguientes paginas para obtener la informació diaria 
+  Crawler y Scrapper de las siguientes paginas para obtener la información diaria 
     - https://www.elclon.com.uy/
     - https://tiendainglesa.com.uy/
     - https://www.tata.com.uy/
