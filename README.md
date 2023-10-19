@@ -8,16 +8,16 @@
 
 ### Definicion de la estrategia del DAaaS
 Catalogo de servicios
-Crear un pagina web para buscar, predecir y mostrar graficas de precios de 200 productos de la canasta basica
-Ademas quiero mostrar ofertas y publicidad de esos relojes
-
+Crear un aplicacion web spa que mejore el acceso de los consumidores a la información para favorecer el funcionamiento de los mercados minoristas y estimular la competencia, optimizando el proceso de difusión de los precios.
+La aplicación permitira buscar, predecir de los precios y mostrar graficas de más de 200 y de más de 500 establecimientos.
+La interfaz web debera ser responsive, contar con una interfaz amigable y de facil compresión.
 ### Arquitectura DAaaS
 Fuentes de datos
-  Dataset
+  Dataset de gobierno con los precios historicos desde 
   Dataset
   Crawler de las siguientes paginas
     
-  Crawler de las siguientes paginas
+  Crawler de las siguientes paginas para obtener la informació diaria 
     https://www.elclon.com.uy/
     https://tiendainglesa.com.uy/
     https://www.tata.com.uy/
