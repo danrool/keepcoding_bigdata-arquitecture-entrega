@@ -11,7 +11,7 @@ Crear un aplicacion web spa que mejore el acceso de los consumidores a la inform
 La aplicación permitira buscar y predecir los precios de más de 200 productos en más de 500 establecimientos.
 
 [MIT](https://choosealicense.com/licenses/mit/)
-Los dataset se distribuyen bajo la   [MIT]([https://choosealicense.com/licenses/mit/](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/sites/agencia-gobierno-electronico-sociedad-informacion-conocimiento/files/documentos/publicaciones/licencia_de_datos_abiertos_0.pdf))
+Los dataset se distribuyen bajo la   [MIT]([https://choosealicense.com/licenses/mit/](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/sites/agencia-gobierno-electronico-sociedad-informacion-conocimiento/files/documentos/publicaciones/licencia_de_datos_abiertos_0.pdf)
 ### Arquitectura DAaaS
 Fuentes de datos
   Dataset de gobierno con los precios historicos desde 
