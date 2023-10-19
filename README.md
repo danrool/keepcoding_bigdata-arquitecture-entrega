@@ -10,6 +10,7 @@
 Crear un aplicacion web spa que mejore el acceso de los consumidores a la información, favorecer el funcionamiento de los mercados minoristas, estimulando la competencia y optimizando el proceso de difusión de precios.
 La aplicación permitira buscar y predecir los precios de más de 200 productos en más de 500 establecimientos.
 
+[MIT](https://choosealicense.com/licenses/mit/)
 Los dataset se distribuyen bajo la [Licencia de DAG de Uruguay]([https://choosealicense.com/licenses/mit/](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/sites/agencia-gobierno-electronico-sociedad-informacion-conocimiento/files/documentos/publicaciones/licencia_de_datos_abiertos_0.pdf))
 ### Arquitectura DAaaS
 Fuentes de datos
