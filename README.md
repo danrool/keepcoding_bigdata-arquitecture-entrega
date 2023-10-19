@@ -16,36 +16,47 @@ Ademas notificará las ofertas diariamente a los suscriptores del servicio.
 
 Fuentes de datos
   Dataset de gobierno con los precios historicos desde 2007, [Licencia de DAG de Uruguay](https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/sites/agencia-gobierno-electronico-sociedad-informacion-conocimiento/files/documentos/publicaciones/licencia_de_datos_abiertos_0.pdf)
-  Dataset
-  Scrapper de las siguientes paginas
+  
+  Crawler y Scrapper de las siguientes paginas
+    - 
     
   Crawler y Scrapper de las siguientes paginas para obtener la información diaria 
-    - https://www.elclon.com.uy/
+    - https://www.devoto.com.uy/
     - https://tiendainglesa.com.uy/
     - https://www.tata.com.uy/
     - https://www.eldorado.com.uy/
 Componentes
-  Google Cloud Storage para ficheros de creawler, dataset, scrapper
   Hadoop para procesamiento de datos
+  Google Cloud Storage para ficheros de creawler, scrapper, dataset 
+  Aplicacion Web
+    Angular JS
+    API en Python
+    
+  Load Balancer
   Servidor Web
     API de Python
-    Cliente
+    Cliente en Angular JS
     Base de datos Google Cloud SQL
   Cloud Functions para scrappers y crawlers
   Cloud Scheduler
   
-### DAaas Operantin Model Design and Rollout
+### DAaas Operantion Model Design and Rollout
   Tareas por unica vez
-    Crear y configurar un Google Cloud Project "El_Mejor_Precio_UY"
+    Crear y configurar un Google Cloud Project "El_Mejor_Precio_UY" con un bucket de Cloud Storage
+    Descargar Datasets historicos y subirlos a Google Cloud Storage
+    Procesar los dataset históricos y subirlos a SQL Cloud
+    Subir los Cloud Functions para el procesamiento de dataset historicos a Google Cloud Storage
+    
     Crear una Cloud function que permita descargar los Dataset historicos y subir a Google Storage para automatizar la tarea
     Crear usuarios para ejecutar los Cloud functions
-    Configurar Cloud Scheduler
-      - 
-  Procesar los dataset históricos y subirlos a SQL Cloud
-  Configurar la ejecucion de las tareas programadas con Google Cloud Scheduler :
-    Crawler de recopilacion de datos mensual
-    Crawler de 
-    Resultado de ejecucion se sube a Cloud Storage
+    Configurar Cloud Scheduler para la ejecucion de las tareas programadas
+      - Crawler de recopilacion de datos mensual (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
+      - Crawler de recopilacion de ofertas diario (planificacion diaria hora 9 AM)
+    
+  
+  
+  
+  Resultado de ejecucion se sube a Cloud Storage
   Crear un SQL que inserte los precios
 
 ### Desarrollo de la plataforma DAaaS (Descripcipon del desarrollo)
