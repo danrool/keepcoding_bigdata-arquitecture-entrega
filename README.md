@@ -79,9 +79,9 @@ Componentes
   - Probar realizar el tunning de los jobs
     
     
-  
+### DAaas Diagram
 
-
+![Diagrama](imagenes/Diagrama.drawio.png)
   
   
   
