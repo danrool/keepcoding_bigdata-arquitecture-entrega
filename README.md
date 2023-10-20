@@ -10,7 +10,7 @@
 
 Crear un aplicacion web spa que mejore el acceso de los consumidores a la información, favorecer el funcionamiento de los mercados minoristas, estimulando la competencia y optimizando el proceso de difusión de precios.
 La aplicación permitirá buscar, visualizar y predecirá los precios de más de 200 productos en más de 500 establecimientos.
-Adicionalmente notificará las ofertas por debabjo del percentil diariamente a los suscriptores del servicio.
+Adicionalmente notificará las ofertas por debabjo del percentil 10 diariamente a los suscriptores del servicio.
 
 ### Arquitectura DAaaS
 
@@ -38,23 +38,41 @@ Componentes
 - 
   
 ### DAaas Operantion Model Design and Rollout
-  Tareas por unica vez
-    Crear y configurar un Google Cloud Project "El_Mejor_Precio_UY" con un bucket de Cloud Storage
-    Descargar Datasets historicos y subirlos a Google Cloud Storage
-    Procesar los dataset históricos y subirlos a SQL Cloud
-    Subir los Cloud Functions para el procesamiento de dataset historicos a Google Cloud Storage
-    
-    Crear una Cloud function que permita descargar los Dataset historicos y subir a Google Storage para automatizar la tarea
-    Crear usuarios para ejecutar los Cloud functions
-    Configurar Cloud Scheduler para la ejecucion de las tareas programadas
-      - Crawler de recopilacion de datos mensual (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
-      - Crawler de recopilacion de ofertas diario (planificacion diaria hora 9 AM)
-    
+- Tareas por unica vez al inicio del proyecto
+  - Crear y configurar un Google Cloud Project "El_Mejor_Precio_UY" con un bucket de Cloud Storage
+  - Obtener los Datasets de establecimientos y productos
+    - Descargar los archivos .csv desde https://www.precios.uy/
+    - Crear Crawlwer y scraper de recopilacion de datos de establecimoento y productos futuros denominarlos CF_CR_SC_Stores y CF_CR_SC_Products
+    - Probar la ejecucion del programa para el procesamiento de los archivos
+    - Subirlo como una Cloud function para su posterior ejecucion de actualizacion de datos
+  - Obtener los Datasets historicos
+    - Descargar los archivos .csv del sitio https://www.precios.uy/
+    - Analizar y validar las estructuras de los mismo, normalizar los datos y generar el script para procesarlos
+    - Procesar los archivos para generarar los scripts SQL de creacion de tablas e insercion de datos en Cloud Sql 
+    - Subirlos a Google Cloud Storage para su posterior ejecucion manualmente
+  - Crear la base de datos BD en Sql Cloud
+  - Procesar los scripts generados on premise en la BD de SQL Cloud
+    - de creación de tablas denominado scripts_01.1_creation_tables.sql
+    - de la inserción de los datos historicos scripts_01.2_load_data.sql
+  - Subir los scripts scripts_01.* a Google Cloud Storage en la carpeta /scripts_01_creation_load en caso de necesitar reprocesarlos datos
+  - 
+- Crear Crawlwer y scraper en Python de recopilacion de datos mensuales y subirlo como una Cloud function denomido CF_CR_SC_Monthly
+- Crear Crawlwer y scraper de recopilacion de datos diarios y subirlo como una Cloud function denomido CF_CR_SC_Daily
+- Crear usuarios para ejecutar los Cloud functions y asignar los permisos correspondientes
+- Configurar Cloud Scheduler para la ejecucion de las tareas programadas
+  - Los scripts CF_CR_SC_Stores y CF_CR_SC_Products de recopilacion de datos de establecimientos y productos (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
+  - El script CF_CR_SC_Monthly de recopilacion de datos mensual (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
+  - El script CF_CR_SC_Daily de recopilacion de ofertas diario (planificacion diaria hora 9 AM) 
+- Configuracion de Dataprep para la generacion del Datawarehouse en BigQuery
+-   Crear los jobs para la generacion de datos que seran usados para las predicciones, analisis, etc.
+-   Programar la ejecucion de los jobs
+- Notificaciones
+  - Crear los Cloud functios CF_Notifications.
+-   Programar la ejecucion de los jobs
   
   
   
-  Resultado de ejecucion se sube a Cloud Storage
-  Crear un SQL que inserte los precios
+
 
   
 
