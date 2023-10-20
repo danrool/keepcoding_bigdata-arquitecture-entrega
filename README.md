@@ -1,9 +1,6 @@
 
 # Big Data Architecture - Big Data Machine Learning Bootcamp
 
-## Brainstorm
-
-
 ## Diseño del DAaaS
 
 ### Definicion de la estrategia del DAaaS
@@ -25,17 +22,16 @@ Fuentes de datos
 Componentes
 - Hadoop para procesamiento de datos
 - Google Cloud Storage para ficheros de creawler, scrapper, dataset 
-- Aplicacion Web
- - Angular Single Page Application
-- API REST en Python/Flask
-    
+- Server de aplicacion Web
+ - Aplicacion Angular SPA
+- Server API REST en Python/Flask
 - Load Balancer para la gestion de peticiones http
 - Base de datos Google Cloud SQL
-- Big Query para Datawarehousing
 - Cloud Functions para scrappers y crawlers
 - Cloud Scheduler para la ejecucion de tareas programadas
-- Firebase Cloud
-- 
+- DataPrep para las transformaciones de data para el Datawarehouse
+- Big Query para Datawarehousing
+- Firebase Cloud Messaging para las notificaciones push
   
 ### DAaas Operantion Model Design and Rollout
 - Tareas por unica vez al inicio del proyecto
@@ -43,6 +39,7 @@ Componentes
   - Obtener los Datasets de establecimientos y productos
     - Descargar los archivos .csv desde https://www.precios.uy/
     - Crear Crawlwer y scraper de recopilacion de datos de establecimoento y productos futuros denominarlos CF_CR_SC_Stores y CF_CR_SC_Products
+      - Estos script deberan dejar los resultados de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato  /in/store/YYYYMM.csv y /in/products/YYYYMM.csv respectivamente
     - Probar la ejecucion del programa para el procesamiento de los archivos
     - Subirlo como una Cloud function para su posterior ejecucion de actualizacion de datos
   - Obtener los Datasets historicos
@@ -57,23 +54,37 @@ Componentes
   - Subir los scripts scripts_01.* a Google Cloud Storage en la carpeta /scripts_01_creation_load en caso de necesitar reprocesarlos datos
   - 
 - Crear Crawlwer y scraper en Python de recopilacion de datos mensuales y subirlo como una Cloud function denomido CF_CR_SC_Monthly
-- Crear Crawlwer y scraper de recopilacion de datos diarios y subirlo como una Cloud function denomido CF_CR_SC_Daily
+  - El script debera dejar el resultado de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato /in/monthly/YYYYMM.csv
+- Crear Crawlwer y scraper de recopilacion de datos diarios y subirlo como una Cloud function denominado CF_CR_SC_Daily
+  - El script debera dejar el resultado de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato /in/daily/YYYYMMDD.csv
 - Crear usuarios para ejecutar los Cloud functions y asignar los permisos correspondientes
 - Configurar Cloud Scheduler para la ejecucion de las tareas programadas
   - Los scripts CF_CR_SC_Stores y CF_CR_SC_Products de recopilacion de datos de establecimientos y productos (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
   - El script CF_CR_SC_Monthly de recopilacion de datos mensual (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
   - El script CF_CR_SC_Daily de recopilacion de ofertas diario (planificacion diaria hora 9 AM) 
+- Crear la base de datos BDW para Datawarehousing
 - Configuracion de Dataprep para la generacion del Datawarehouse en BigQuery
 -   Crear los jobs para la generacion de datos que seran usados para las predicciones, analisis, etc.
+-   Probar la ejecucion de los jobs
 -   Programar la ejecucion de los jobs
+- Firebase
+  - Crear la aplicacion y configurar las notificaciones
 - Notificaciones
-  - Crear los Cloud functios CF_Notifications.
--   Programar la ejecucion de los jobs
-  
-  
+  - Crear los Cloud functions CF_Notifications
+  - Programar la ejecucion de los jobs
+  - Probar realizar el tunning de los jobs
+- Predicciones
+  - Crear los Cloud functions CF_Predicciones con los modelos de regresion linea y regresion logistica utilizando la API de Keras para tener una implementacion rapida y efectiva como un MVP de esta feature 
+  - Programar la ejecucion de los jobs
+  - Probar realizar el tunning de los jobs
+    
+    
   
 
 
+  
+  
+  
   
 
 
