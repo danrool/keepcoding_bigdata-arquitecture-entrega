@@ -106,7 +106,8 @@ Componentes
 
 [Diagrama](imagenes/Diagrama.drawio)
 
-![Diagrama](imagenes/Diagrama.drawio.png)
+![Diagrama](imagenes/Diagrama.png)
+
   
   
   
