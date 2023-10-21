@@ -59,46 +59,52 @@ Componentes
     - de creación de tablas denominado scripts_01.1_creation_tables.sql
     - de la inserción de los datos historicos scripts_01.2_load_data.sql
   - Subir los scripts scripts_01.* a Google Cloud Storage en la carpeta /scripts_01_creation_load en caso de necesitar reprocesarlos datos
-- Crear Crawlwer y scraper en Python de recopilacion de datos mensuales y subirlo como una Cloud function denomido CF_CR_SC_Monthly
-  - El script debera dejar el resultado de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato /in/monthly/YYYYMM.csv
-- Crear Crawlwer y scraper de recopilacion de datos diarios y subirlo como una Cloud function denominado CF_CR_SC_Daily
-  - El script debera dejar el resultado de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato /in/daily/YYYYMMDD.csv
-- Crear usuarios para ejecutar los Cloud functions y asignar los permisos correspondientes
-- Configurar Cloud Scheduler para la ejecucion de las tareas programadas
-  - Los scripts CF_CR_SC_Stores y CF_CR_SC_Products de recopilacion de datos de establecimientos y productos (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
-  - El script CF_CR_SC_Monthly de recopilacion de datos mensual (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
-  - El script CF_CR_SC_Daily de recopilacion de ofertas diario (planificacion diaria hora 9 AM) 
-- Crear la base de datos BDW para Datawarehousing
-- Configuracion de Dataprep para la generacion del Datawarehouse en BigQuery
-  - Crear los jobs para la generacion de datos que seran usados para las predicciones, analisis, etc.
-  - Probar la ejecucion de los jobs
-  - Programar la ejecucion de los jobs
--  Crear las instancias para el servidor Web y API
-  -  Instalar el servidor Web
-  -  Instalar la aplicacion Angular o API segun correponda
-  -  Configurar los archivos de log para que se almacen en cloud Storage en las carpetas /logging/[server]/YYYYMMDD
+  - Crear Crawlwer y scraper en Python de recopilacion de datos mensuales y subirlo como una Cloud function denomido CF_CR_SC_Monthly
+    - El script debera dejar el resultado de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato /in/monthly/YYYYMM.csv
+  - Crear Crawlwer y scraper de recopilacion de datos diarios y subirlo como una Cloud function denominado CF_CR_SC_Daily
+    - El script debera dejar el resultado de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato /in/daily/YYYYMMDD.csv
+  - Crear usuarios para ejecutar los Cloud functions y asignar los permisos correspondientes
+  - Configurar Cloud Scheduler para la ejecucion de las tareas programadas
+    - Los scripts CF_CR_SC_Stores y CF_CR_SC_Products de recopilacion de datos de establecimientos y productos (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
+    - El script CF_CR_SC_Monthly de recopilacion de datos mensual (planificacion mensual dias 1,3,5,7,10 hora 11 PM)
+    - El script CF_CR_SC_Daily de recopilacion de ofertas diario (planificacion diaria hora 9 AM) 
+  - Crear la base de datos BDW para Datawarehousing
+  - Configuracion de Dataprep para la generacion del Datawarehouse en BigQuery
+    - Crear los jobs para la generacion de datos que seran usados para las predicciones, analisis, etc.
+    - Probar la ejecucion de los jobs
+    - Programar la ejecucion de los jobs
+  -  Crear las instancias para el servidor Web y API
+    -  Instalar el servidor Web
+    -  Instalar la aplicacion Angular o API segun correponda
+    -  Configurar los archivos de log para que se almacen en cloud Storage en las carpetas /logging/[server]/YYYYMMDD
   -  Configurar las reglas de firewall para permite el acceso a la aplicacion Angular y API
-- Firebase
-  - Crear la aplicacion y configurar las notificaciones
-- Notificaciones
-  - Crear los Cloud functions CF_Notifications
-  - Programar la ejecucion de los jobs
-  - Probar realizar el tunning de los jobs
-- Predicciones
-  - Crear los Cloud functions CF_Predicciones con los modelos de regresion linea y regresion logistica utilizando la API de Keras para tener una implementacion rapida y efectiva como un MVP de esta feature 
-  - Programar la ejecucion de los jobs
-  - Probar realizar el tunning de los jobs
-- Analitica de performance
-  - Configurar una instencia del servidor para Elastic y Kibana
-  - Configurar los indices necesarios acordes a la informacion a analizar
-  - Implementar los dashboard para detecciones de erroes, analisis de trafico e informacion solicitada 
-  - Crear los Cloud functions CF_Subir_Logs para subir los logs a Elastic
-  - Programar la ejecucion de los CF_Subir_Logs
+  - Firebase
+    - Crear la aplicacion y configurar las notificaciones
+  - Notificaciones
+    - Crear los Cloud functions CF_Notifications
+    - Programar la ejecucion de los jobs
+    - Probar realizar el tunning de los jobs
+  - Predicciones
+    - Crear los Cloud functions CF_Predicciones con los modelos de regresion linea y regresion logistica utilizando la API de Keras para tener una implementacion rapida y efectiva como un MVP de esta feature 
+    - Programar la ejecucion de los jobs
+    - Probar realizar el tunning de los jobs
+
+- Tareas para realizar luego de la puesta en marcha
+  - Analitica de performance de la aplicacion, analisis de errores, analisis de las peticiones https
+    - Configurar una instencia del servidor para Elastic y Kibana
+    - Configurar los indices necesarios acordes a la informacion a analizar
+    - Implementar los dashboard para conocer la performance de la aplciacion, detecciones de erroes, analisis de trafico e informacion solicitada 
+    - Crear los Cloud functions CF_Subir_Logs para subir los logs a Elastic
+    - Programar la ejecucion de los CF_Subir_Logs
   - Configurar las reglas de firewall para permite el acceso a Kibana
 
-- Analisis que los costos de la solucion este de acuerdo a lo presupuestado para las solucion.
-  - En caso de que no sea 
+- Tareas para realizar mensualmente
+  - Analisis que los costos vs el desempeño de la solucion para que este de acuerdo a lo previsto de inversión.
+  - Buscar oportunidades de mejora y realizar la reingeniera que sea necesaria si se encuentran desviaciones
+  
 ### DAaas Diagram
+
+[Diagrama](imagenes/Diagrama.drawio)
 
 ![Diagrama](imagenes/Diagrama.drawio.png)
   
