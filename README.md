@@ -19,19 +19,26 @@ Fuentes de datos
   - https://tiendainglesa.com.uy/
   - https://www.tata.com.uy/
   - https://www.eldorado.com.uy/
+  - https://www.elclon.com.uy/
 Componentes
-- Hadoop para procesamiento de datos
 - Google Cloud Storage para ficheros de creawler, scrapper, dataset 
 - Server de aplicacion Web
+ - Servidor web nginx
  - Aplicacion Angular SPA
-- Server API REST en Python/Flask
+ - Configurar retencion de logs para analisis en caso de ser necesario
+- Server de aplicacion API REST
+  - Servidor web nginx
+  - Aplicacion en Python/Flask
+  - Configurar retencion de logs para analisis en caso de ser necesario
+- Firewall para el control de acceso a recursos
 - Load Balancer para la gestion de peticiones http
 - Base de datos Google Cloud SQL
-- Cloud Functions para scrappers y crawlers
+- Cloud Functions para crawlers, scrappers, programas python
 - Cloud Scheduler para la ejecucion de tareas programadas
 - DataPrep para las transformaciones de data para el Datawarehouse
 - Big Query para Datawarehousing
 - Firebase Cloud Messaging para las notificaciones push
+- ElasticSearch y Kibana para analisis de logs de trafico, requerimientos y performance los servicios
   
 ### DAaas Operantion Model Design and Rollout
 - Tareas por unica vez al inicio del proyecto
@@ -39,20 +46,19 @@ Componentes
   - Obtener los Datasets de establecimientos y productos
     - Descargar los archivos .csv desde https://www.precios.uy/
     - Crear Crawlwer y scraper de recopilacion de datos de establecimoento y productos futuros denominarlos CF_CR_SC_Stores y CF_CR_SC_Products
-      - Estos script deberan dejar los resultados de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato  /in/store/YYYYMM.csv y /in/products/YYYYMM.csv respectivamente
+      - Estos script deberan dejar los resultados de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato  /in/store/YYYYMM.csv y /in/products/YYYYMM.csv respectivamente ademas de volcar los datos a la BD en Cloud SQL
     - Probar la ejecucion del programa para el procesamiento de los archivos
     - Subirlo como una Cloud function para su posterior ejecucion de actualizacion de datos
   - Obtener los Datasets historicos
     - Descargar los archivos .csv del sitio https://www.precios.uy/
     - Analizar y validar las estructuras de los mismo, normalizar los datos y generar el script para procesarlos
-    - Procesar los archivos para generarar los scripts SQL de creacion de tablas e insercion de datos en Cloud Sql 
-    - Subirlos a Google Cloud Storage para su posterior ejecucion manualmente
+    - Procesar los archivos para generarar los scripts SQL de creacion de tablas e insercion de datos en Cloud SQL denominarlos scripts_01.1_creation_tables.sql y scripts_01.2_load_data.sql
+    - Subir los scripts sql a Google Cloud Storage para su posterior ejecucion manualmente
   - Crear la base de datos BD en Sql Cloud
   - Procesar los scripts generados on premise en la BD de SQL Cloud
     - de creación de tablas denominado scripts_01.1_creation_tables.sql
     - de la inserción de los datos historicos scripts_01.2_load_data.sql
   - Subir los scripts scripts_01.* a Google Cloud Storage en la carpeta /scripts_01_creation_load en caso de necesitar reprocesarlos datos
-  - 
 - Crear Crawlwer y scraper en Python de recopilacion de datos mensuales y subirlo como una Cloud function denomido CF_CR_SC_Monthly
   - El script debera dejar el resultado de su ejecucion en Cloud Storage en las carpetas y archivos con el siguiente formato /in/monthly/YYYYMM.csv
 - Crear Crawlwer y scraper de recopilacion de datos diarios y subirlo como una Cloud function denominado CF_CR_SC_Daily
@@ -64,9 +70,14 @@ Componentes
   - El script CF_CR_SC_Daily de recopilacion de ofertas diario (planificacion diaria hora 9 AM) 
 - Crear la base de datos BDW para Datawarehousing
 - Configuracion de Dataprep para la generacion del Datawarehouse en BigQuery
--   Crear los jobs para la generacion de datos que seran usados para las predicciones, analisis, etc.
--   Probar la ejecucion de los jobs
--   Programar la ejecucion de los jobs
+  - Crear los jobs para la generacion de datos que seran usados para las predicciones, analisis, etc.
+  - Probar la ejecucion de los jobs
+  - Programar la ejecucion de los jobs
+-  Crear las instancias para el servidor Web y API
+  -  Instalar el servidor Web
+  -  Instalar la aplicacion Angular o API segun correponda
+  -  Configurar los archivos de log para que se almacen en cloud Storage en las carpetas /logging/[server]/YYYYMMDD
+  -  Configurar las reglas de firewall para permite el acceso a la aplicacion Angular y API
 - Firebase
   - Crear la aplicacion y configurar las notificaciones
 - Notificaciones
@@ -77,8 +88,16 @@ Componentes
   - Crear los Cloud functions CF_Predicciones con los modelos de regresion linea y regresion logistica utilizando la API de Keras para tener una implementacion rapida y efectiva como un MVP de esta feature 
   - Programar la ejecucion de los jobs
   - Probar realizar el tunning de los jobs
-    
-    
+- Analitica de performance
+  - Configurar una instencia del servidor para Elastic y Kibana
+  - Configurar los indices necesarios acordes a la informacion a analizar
+  - Implementar los dashboard para detecciones de erroes, analisis de trafico e informacion solicitada 
+  - Crear los Cloud functions CF_Subir_Logs para subir los logs a Elastic
+  - Programar la ejecucion de los CF_Subir_Logs
+  - Configurar las reglas de firewall para permite el acceso a Kibana
+
+- Analisis que los costos de la solucion este de acuerdo a lo presupuestado para las solucion.
+  - En caso de que no sea 
 ### DAaas Diagram
 
 ![Diagrama](imagenes/Diagrama.drawio.png)
